@@ -1,4 +1,6 @@
 use std::io;
+mod game;
+use game::Game;
 
 fn main() {
     println!("Welcome to Gamerboxd!");

@@ -1,0 +1,12 @@
+# Rust build output
+/target/
+
+# Cargo package files
+**/*.rs.bk
+
+# VS Code settings (optional, keeps personal settings out of Git)
+.vscode/
+
+# OS-specific junk (optional but useful)
+.DS_Store
+Thumbs.db

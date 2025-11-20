@@ -5,15 +5,17 @@ pub struct Game {
     pub genre: String,
     pub rating: f32,
     pub comments: String,
+    pub favorite: bool,
 }
 
 impl Game {
-    pub fn new(name: String, genre: String, rating: f32, comments: String) -> Self {
+    pub fn new(name: String, genre: String, rating: f32, comments: String, favorite: bool) -> Self {
         Self {
             name,
             genre,
             rating,
             comments,
+            favorite,
         }
     }
 
@@ -22,5 +24,6 @@ impl Game {
         println!("Genre: {}", self.genre);
         println!("Rating: {}/5 ⭐ ", self.rating);
         println!("Comments: {}", self.comments);
+        println!("Favorites: {}", if self.favorite { "Yes" } else { "No" });
     }
 }

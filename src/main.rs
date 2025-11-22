@@ -5,6 +5,8 @@ use game::{Game, format_rating};
 fn main() {
     println!("Welcome to Gamerboxd!");
 
+    let mut games: Vec<Game> = Vec::new();
+    
     loop {
         println!("**** Main Menu ****");
         println!("1. Add a new game");
@@ -14,7 +16,6 @@ fn main() {
         println!("5. Exit");
 
         let mut input = String::new();
-        let mut games: Vec<Game> = Vec::new();
         io::stdin()
             .read_line(&mut input)
             .expect("Failed to read line!");
@@ -69,21 +70,33 @@ fn read_rating_step() -> u8 {
 }
 
 fn add_game(games: &mut Vec<Game>) {
-    println!("coming soon!");
+    println!("--- Add a New Game ---");
+
+    let name = read_line("Enter game title:");
+    let genre = read_line("Enter genre:");
+    let rating_step = read_rating_step();
+    let comments = read_line("Any comments?");
+    let favorite = read_yes_no("Add to favorites?");
+
+    let new_game = Game::new(name, genre, rating_step, comments, favorite);
+
+    games.push(new_game);
+
+    println!("Game added successfully!");
 }
 
 fn view_games(games: &[Game]) {
-    // demo game to show the rating system
-    let demo_game = Game::new(
-        "The Legend of Zelda".to_string(), // name
-        "Adventure".to_string(),           // genre
-        7,                                 // rating_step (7 -> 3.5 stars)
-        "Great game with lots of exploration.".to_string(), // comments
-        true,                              // favorite
-    );
+    println!("--- Your Collection ---");
 
-    println!("--- Your Collection (demo) ---");
-    demo_game.display();
+    if games.is_empty() {
+        println!("Your collection is empty!");
+        return;
+    }
+
+    for game in games {
+        game.display();
+        println!("-----------------------");
+    }
 }
 
 fn add_favorite(games: &mut Vec<Game>) {

@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
 
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Game {
     pub name: String,
     pub genre: String,
@@ -8,6 +9,7 @@ pub struct Game {
     pub favorite: bool,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
 pub struct PlannedGame {
     pub name: String,
     pub comments: String,

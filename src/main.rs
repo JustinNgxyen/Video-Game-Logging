@@ -4,14 +4,6 @@ mod game;
 use game::{Game, format_rating};
 
 fn main() {
-
-    fn load_games() -> Vec<Game> {
-    if let Ok(data) = std::fs::read_to_string("games.json") {
-        serde_json::from_str(&data).unwrap_or_default()
-    } else {
-        Vec::new()
-    }
-}
     println!("Welcome to Gamerboxd!");
 
     let mut games = load_games();
@@ -98,6 +90,14 @@ fn add_game(games: &mut Vec<Game>) {
 fn save_games(games: &Vec<Game>) {
     let json = serde_json::to_string_pretty(games).expect("Failed to serialize games");
     fs::write("games.json", json).expect("Failed to write file");
+}
+
+fn load_games() -> Vec<Game> {
+    if let Ok(data) = std::fs::read_to_string("games.json") {
+        serde_json::from_str(&data).unwrap_or_default()
+    } else {
+        Vec::new()
+    }
 }
 
 fn view_games(games: &[Game]) {
